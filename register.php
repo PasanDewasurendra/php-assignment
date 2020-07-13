@@ -13,48 +13,60 @@
 </head>
 <body>
 
-<div class="container">
-	
-	<h2 class="text-center">Register</h2>
-	
-	<div class="row">
-	<div class="col-md-6 col-lg-6">
-	<form method="post" name="restrationForm" action="register.php">
-
-		<label for="name"><b>Full Name:</b></label>
-		<input type='text' class="form-control" id='name' placeholder="First Name" name='name' required/>
-		<br />
+	<div class="container mb-5 mt-2">
 		
-		<label for="email"><b>Email ID:</b></label>
-		<input type='text' class="form-control" id='email' placeholder="Email Address" name='email' required/>
-		<br/>
+        <div class="row justify-content-center align-items-center">
 		
-		<label for="nic"><b>NIC:</b></label>
-		<input type='text' class="form-control" id='nic' placeholder="NIC Number" name='nic' required/>
-		<br/>
-		
-		<label for="contact"><b>Contact No:</b></label>
-		<input type='text' class="form-control" id='contact' placeholder="Contact Number" name='contact' required/>
-		<br/>
-		
-		<label for="address"><b>Home Address:</b></label>
-		<input type='text' class="form-control" id='address' placeholder="Home Address" name='address' required/>
-		</br>
-		
-		<label for="password"><b>Password:</b></label>
-		<input type='text' class="form-control" id='password' placeholder="Password" name='password' required/>
-		<br/>
-		
-		<label for="cpassword"><b>Confirm Password:</b></label>
-		<input type='text' class="form-control" id='cpassword' placeholder="Confirm Password" name='cpassword' required/>
-		</br/>
-		
-		<input type='submit' class="btn btn-primary" value='Register' id="register" name='btnSubmit'/>
-	</form>
+            <div class="col-md-6">
+                <div class="col-md-12">
+					<div class="card">
+						<div class="card-header bg-primary"><h2 class="text-center text-white">Register</h2></div>
+						<div class="card-body">
+							<form method="post" action="register.php">
+						
+								<div class="form-group">
+									<label for="name" class="text-dark">Full Name:</label><br>
+									<input type="text" name="name" id="name" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label for="email" class="text-dark">Email ID:</label><br>
+									<input type="text" name="email" id="email" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label for="nic" class="text-dark">NIC:</label><br>
+									<input type="text" name="nic" id="nic" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label for="contact" class="text-dark">Contact No:</label><br>
+									<input type="text" name="contact" id="contact" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label for="address" class="text-dark">Home Address:</label><br>
+									<input type="text" name="address" id="address" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label for="password" class="text-dark">Password:</label><br>
+									<input type="password" name="password" id="password" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label for="cpassword" class="text-dark">Confirm Password:</label><br>
+									<input type="password" name="cpassword" id="cpassword" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<input type="submit" name="register" id="register" class="btn btn-primary float-right" value="Register">
+								</div>
+								
+								<div class="justify-content-center align-items-center">Allready hava a Account?
+									<a href="./login.php" class="text-link">Login Here</a>
+								</div>
+								
+							</form>
+						</div>
+					</div>
+                </div>
+			</div>
+        </div>
 	</div>
-	</div>
-
-</div>
 
 
 <script type="text/javascript">
@@ -77,7 +89,7 @@
 
 				$.ajax({
 					type: 'POST',
-					url: 'dbController.php',
+					url: 'registerController.php',
 					data: $values,
 					success: function(data){
 						alert(data);
