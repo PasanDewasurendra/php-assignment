@@ -49,27 +49,57 @@
 		console.log('ready');
 		$('#login').click(function(){
 			
-				var username = $('#username').val();
-				var password = $('#password').val();
+				var username = document.getElementById('username');
+				var password = document.getElementById('password');
 				
-				$values = {username: username, password: password};
+				if(username.value.length == 0 || password.value.length == 0){
+					alert("Username or password cannot be empty.");
+				}else{
+					
+					if(!validEmail(username)){
+						alert("Enter Valid Email Address");
+					}else if(!validPassword(password)){
+						alert("Password must contain at least 8 characters!");
+					}else{
+		
+						$values = {username: username.value, password: password.value};
 
-				$.ajax({
-					type: 'POST',
-					url: 'loginController.php',
-					data: $values,
-					success: function(data){
-						if(data.trim() === "success"){
-							window.location.replace('users.php');
-						}else{
-							console.log(data);
-						}
-						
+						$.ajax({
+							type: 'POST',
+							url: 'loginController.php',
+							data: $values,
+							success: function(data){
+								if(data.trim() === "success"){
+									alert('Login Successfully.');
+									window.location.replace('users.php');
+								}else{
+									alert(data);
+								}
+								
+							}
+						});
 					}
-				});
-			
+				}
+
 		});
 	});
+	
+	function validEmail(data){
+        var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+        if(data.value.match(emailExp)){
+            return true;
+        }else{
+            return false;
+        }
+	}
+	function validPassword(data){
+		if(data.value.length < 8){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
 </script>		
 
 
