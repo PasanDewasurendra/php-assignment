@@ -12,7 +12,6 @@
 	
 </head>
 <body>
-
         <div class="container">
 		
 			<h3 class="text-center text-primary pt-5">Login</h3>
@@ -31,7 +30,7 @@
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="login" id="login" class="btn btn-primary float-right" value="Login">
+                                <input type="button" name="login" id="login" class="btn btn-primary float-right" value="Login">
                             </div>
 							
                             <div class="justify-content-center align-items-center">Dont have an Account?
@@ -46,13 +45,10 @@
 		
 
 <script type="text/javascript">
-	$(function(){
+	$(document).ready(function(){
+		console.log('ready');
 		$('#login').click(function(){
 			
-			var valid = this.form.checkValidity();	
-			console.log(valid);
-			
-			if(valid){
 				var username = $('#username').val();
 				var password = $('#password').val();
 				
@@ -63,18 +59,14 @@
 					url: 'loginController.php',
 					data: $values,
 					success: function(data){
-						alert(data);
-						console.log(data);
-					},
-					error: function(error){
-						alert("Error while login to system");
-						console.log(error);
+						if(data.trim() === "success"){
+							window.location.replace('users.php');
+						}else{
+							console.log(data);
+						}
+						
 					}
 				});
-				
-			}else{
-				
-			}
 			
 		});
 	});

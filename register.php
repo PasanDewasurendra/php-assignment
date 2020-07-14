@@ -1,5 +1,5 @@
 
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>User Registration</title>
@@ -53,7 +53,7 @@
 									<input type="password" name="cpassword" id="cpassword" class="form-control" required>
 								</div>
 								<div class="form-group">
-									<input type="submit" name="register" id="register" class="btn btn-primary float-right" value="Register">
+									<input type="button" name="register" id="register" class="btn btn-primary float-right" value="Register">
 								</div>
 								
 								<div class="justify-content-center align-items-center">Allready hava a Account?
@@ -88,21 +88,17 @@
 				$values = {name: name, email: email, nic: nic, contact: contact, address: address, password: pass};
 
 				$.ajax({
-					type: 'POST',
+					method: 'post',
 					url: 'registerController.php',
 					data: $values,
 					success: function(data){
 						alert(data);
-						console.log(data);
-					},
-					error: function(error){
-						alert(error);
-						console.log(error);
+						window.location.replace('login.php');
 					}
 				});
 				
 			}else{
-				
+				alert('please, fill all the fiellds');
 			}
 			
 		});

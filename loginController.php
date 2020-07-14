@@ -1,23 +1,21 @@
 <?php
 require 'config.php';
 
+session_start();
+
 $username = $_POST['username'];
 $password = $_POST['password'];
+$password = sha1($password);
 
-$query_selectAll = "SELECT * FROM users WHERE email = ? password = ?";
-$sql = $conn->prepare($query_selectAll);
-$result = $sql->execute([$username, $password]);
+$sql = "SELECT * FROM users WHERE email = '$username' AND password = '$password'";
+$result = $conn->query($sql);
 
-if($result){
-	$user = $sql->fetch(PDO::FETCH_ASSOC);
-	if($sql->rowCount() > 0){
-		echo '1';
-	}else{
-		echo 'Cannot find user with this credentials';
-	}
-	
+if($result->num_rows > 0){
+	$_SESSION['username'] = $username;
+	echo "success";
+		
 }else{
-	echo 'username or password incorrect';
+	echo "Invalid username or password";
+
 }
 
-?>
